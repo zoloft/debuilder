@@ -5,4 +5,8 @@ RUN echo 'deb http://security.debian.org/ jessie/updates main contrib non-free' 
 RUN echo 'deb http://deb.debian.org/debian testing non-free contrib main' >> /etc/apt/sources.list.d/testing.list
 RUN apt-get update
 RUN apt-get install -y --force-yes devscripts build-essential debhelper dh-make curl git git-buildpackage rsync
+RUN apt-get upgrade -y --force-yes
+RUN curl -OL http://ftp.debian.org/debian/pool/main/p/python-zeroconf/python-zeroconf_0.17.6-1_all.deb
+RUN dpkg -i python-zeroconf_0.17.6-1_all.deb || true
+RUN apt-get install -f -y --force-yes
 
