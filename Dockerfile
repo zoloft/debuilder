@@ -1,8 +1,9 @@
 FROM buildpack-deps:jessie
 
-RUN echo 'deb http://deb.debian.org/debian/ jessie-backports main' > /etc/apt/sources.list.d/backports.list
-RUN echo 'deb http://security.debian.org/ jessie/updates main contrib non-free' > /etc/apt/sources.list.d/security.list
+RUN echo 'deb [check-valid-until=no] http://archive.debian.org/debian/ jessie-backports main' > /etc/apt/sources.list.d/backports.list
 RUN echo 'deb http://deb.debian.org/debian testing non-free contrib main' >> /etc/apt/sources.list.d/testing.list
+RUN echo 'Acquire::Check-Valid-Until "false";' >> /etc/apt/apt.conf
+RUN sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install -y --force-yes devscripts build-essential debhelper dh-make curl git git-buildpackage rsync
 RUN apt-get upgrade -y --force-yes
