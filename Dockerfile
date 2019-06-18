@@ -18,7 +18,7 @@ RUN echo 'eval "`dircolors`"' >> /root/.bashrc
 RUN echo 'alias ls="ls $LS_OPTIONS"' >> /root/.bashrc
 RUN echo 'alias ll="ls -lah"' >> /root/.bashrc
 RUN echo 'alias dquilt="quilt --quiltrc=/root/.quiltrc-dpkg"' >> /root/.bashrc
-RUN echo -e "\
+RUN echo -e '\
 d=. ; while [ ! -d $d/debian -a $(readlink -e $d) != / ]; do d=$d/..; done \n\
 if [ -d $d/debian ] && [ -z $QUILT_PATCHES ]; then \n\
     # if in Debian packaging tree with unset $QUILT_PATCHES \n\
@@ -29,5 +29,5 @@ if [ -d $d/debian ] && [ -z $QUILT_PATCHES ]; then \n\
     QUILT_COLORS="diff_hdr=1;32:diff_add=1;34:diff_rem=1;31:diff_hunk=1;33:diff_ctx=35:diff_cctx=33" \n\
     if ! [ -d $d/debian/patches ]; then mkdir $d/debian/patches; fi \n\
 fi\
-" > /root/.quiltrc-dpkg
+' > /root/.quiltrc-dpkg
 
