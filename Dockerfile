@@ -12,7 +12,7 @@ RUN apt-get upgrade -y --force-yes
 RUN curl -OL http://ftp.debian.org/debian/pool/main/p/python-zeroconf/python-zeroconf_0.17.6-1_all.deb
 RUN dpkg -i python-zeroconf_0.17.6-1_all.deb || true
 RUN apt-get install -f -y --force-yes
-ENV SHELL xterm
+ENV SHELL bash
 RUN echo 'export LS_OPTIONS="--color=auto"' >> /root/.bashrc
 RUN echo 'eval "`dircolors`"' >> /root/.bashrc
 RUN echo 'alias ls="ls $LS_OPTIONS"' >> /root/.bashrc
