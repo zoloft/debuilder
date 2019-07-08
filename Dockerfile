@@ -6,8 +6,8 @@ RUN echo 'deb [check-valid-until=no] http://archive.debian.org/debian/ jessie-ba
 RUN echo 'deb http://deb.debian.org/debian testing non-free contrib main' >> /etc/apt/sources.list.d/testing.list
 RUN echo 'Acquire::Check-Valid-Until "false";' >> /etc/apt/apt.conf
 RUN sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y --force-yes devscripts build-essential debhelper dh-make curl git git-buildpackage rsync vim quilt python-all python3-all python-stdeb
+RUN apt update
+RUN apt-get install -y --force-yes apt-utils devscripts build-essential debhelper dh-make curl git git-buildpackage rsync vim quilt python-all python3-all python-stdeb
 RUN apt-get upgrade -y --force-yes
 RUN curl -OL http://ftp.debian.org/debian/pool/main/p/python-zeroconf/python-zeroconf_0.17.6-1_all.deb
 RUN dpkg -i python-zeroconf_0.17.6-1_all.deb || true
